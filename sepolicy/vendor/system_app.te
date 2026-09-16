@@ -16,3 +16,12 @@ allow system_app vendor_sysfs_usb_supply:file r_file_perms;
 
 allow system_app vendor_sysfs_battery_supply:dir r_dir_perms;
 allow system_app vendor_sysfs_battery_supply:file r_file_perms;
+
+# The supplies themselves are labelled above, but the class directory holding
+# them is the generic type and every domain has only search on that - so the
+# app can read a supply it knows the name of and cannot find out which ones
+# exist. Both names it wants are per-board: the charger's supply is whatever
+# the vendor called it, and UCSI's is ucsi-source-psy-<parent device><n>.
+# Listing is the whole of the widening; reading a file under the generic type
+# is not granted here and is not wanted.
+allow system_app sysfs:dir { read open };
