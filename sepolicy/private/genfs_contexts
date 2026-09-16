@@ -1,0 +1,5 @@
+# The upstream power delivery class, which UCSI registers a device in per port
+# and per attached charger. AOSP labels the class directory; these are the
+# devices behind it, where the advertised objects actually are. Kept on the
+# platform side because sysfs_usb_pd is a private platform type.
+genfscon sysfs /devices/virtual/usb_power_delivery u:object_r:sysfs_usb_pd:s0

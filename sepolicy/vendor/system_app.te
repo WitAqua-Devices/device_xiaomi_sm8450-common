@@ -1,3 +1,18 @@
 allow system_app hal_mlipay_hwservice:hwservice_manager find;
 
 binder_call(system_app, hal_mlipay_default)
+
+# QcomPdInfo reads the type-C port and the supplies beside it: the roles, the
+# request object the kernel publishes there, and what the charger firmware
+# calls the adapter - which is the only thing on this board that tells a
+# programmable contract from a fixed one. All of it is vendor's while the
+# reader is a system app.
+allow system_app vendor_sysfs_usb_c:dir r_dir_perms;
+allow system_app vendor_sysfs_usb_c:lnk_file r_file_perms;
+allow system_app vendor_sysfs_usb_c:file r_file_perms;
+
+allow system_app vendor_sysfs_usb_supply:dir r_dir_perms;
+allow system_app vendor_sysfs_usb_supply:file r_file_perms;
+
+allow system_app vendor_sysfs_battery_supply:dir r_dir_perms;
+allow system_app vendor_sysfs_battery_supply:file r_file_perms;

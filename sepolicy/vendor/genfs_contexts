@@ -26,5 +26,11 @@ genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,
 genfscon sysfs /devices/platform/soc/soc:fingerprint_goodix/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup u:object_r:sysfs_wakeup:s0
 
+# USB
+# The type-C ports UCSI registers over pmic-glink. The class directory carries
+# this type already; the devices it links to are what the attributes live in,
+# and among them is the request object the kernel publishes for QcomPdInfo.
+genfscon sysfs /devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec u:object_r:vendor_sysfs_usb_c:s0
+
 # Touchscreen
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vendor_sysfs_touch:s0

@@ -1,0 +1,7 @@
+# QcomPdInfo reads what the charger advertised out of the power delivery
+# class. The partner's objects sit in a virtual device with no link back to
+# the port, so the symlink the type-C class carries is the only way to tell
+# whose they are - hence the link permission beside the other two.
+allow system_app sysfs_usb_pd:dir r_dir_perms;
+allow system_app sysfs_usb_pd:lnk_file r_file_perms;
+allow system_app sysfs_usb_pd:file r_file_perms;
